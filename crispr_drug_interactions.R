@@ -1,6 +1,4 @@
 library(openxlsx)
-# library(dplyr)
-# library(stringr)
 
 # Load 10,174 Best INFerred Genes (BING)
 # https://clue.io/connectopedia/l1000_gene_space
@@ -9,7 +7,7 @@ BING <- read.xlsx("~/computations/crispr_drug_interactions/gene-space_2018-08-01
 BING <- BING[BING$Type == "best inferred" | BING$Type == "landmark",]
 BING <- BING$Symbol
 
-# Subset BING gens from Cromer et al. diffentially expressed genes (DEGs) (See article's Supplemental Information)
+# Subset BING genes from Cromer et al. diffentially expressed genes (DEGs) (See article's Supplemental Information; doi: 10.1016/j.ymthe.2018.06.002)
 DEGs <- read.xlsx("~/computations/crispr_drug_interactions/CRISPR_Cas9_DifferentiallyExpressedTranscriptsKnownAndUnknownCromer2018_renamed.xlsx")
 DEGs <- DEGs[!is.na(DEGs$Gene),] #
 DEGs <- DEGs[!duplicated(DEGs$Gene),] #
