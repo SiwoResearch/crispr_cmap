@@ -16,11 +16,10 @@ DEGs <- DEGs[!is.na(DEGs$Gene),]
 DEGs <- DEGs[!duplicated(DEGs$Gene),]
 DEGs <- DEGs[DEGs$Gene %in% BING,]
 
-# Subset Up and Down regulated genes for each treatment 
+## Subset Up and Down regulated genes for each treatment 
 treatment <- c("Elect.", "mRNAalone.", "mRNAandAAV.", "RNPalone.","RNPandAAV.","AAValone.")
 MLogP = 7
 N = 150
-
 for (i in 1:length(treatment)){
         df <- DEGs[,colnames(DEGs) %in% c("Gene", grep(treatment[i], colnames(DEGs), value = TRUE))]
         up <- df[which(df[,2] > 0 & df[,3] >= MLogP),]
